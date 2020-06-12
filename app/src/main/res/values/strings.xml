@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Festify</string>
+    <!--Drawer Menu-->
+    <string name="drawer_menu_profile">My Profile</string>
+    <string name="drawer_menu_home">Home</string>
+    <!--Andere shizzle-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!--Andere shizzle-->
+    <string name="drawer_menu_all_rooms">All Rooms</string>
+    <string name="drawer_menu_rooms_by_location">Rooms by location</string>
+    <!--Login-->
+    <string name="Enter_your_email">Enter your email</string>
+    <string name="EnterPassword">Enter your password</string>
+    <string name="Log_In">Log In</string>
+    <string name="Dont_have_account">Don\'t have an account? Sign In.</string>
+    <!--Login Progress Dialog-->
+    <string name="Please_Wait">Please Wait</string>
+    <string name="Logging_In">Logging In</string>
+    <string name="Enter_your_password">Enter your Password</string>
+    <string name="noNetwork">Please make sure you have an internet connection available.</string>
+    <!--Sign In-->
+    <string name="username">Enter your username</string>
+    <string name="Password">Password</string>
+    <string name="Confirm_your_password">Confirm your Password</string>
+    <string name="Sign_In">Sign In</string>
+    <string name="Already_have_account">Already have an account? Log In</string>
+    <!--Signin Progress Dialog-->
+    <string name="Creating_Account">Creating Account</string>
+    <string name="Name">Enter your name</string>
+    <!--Errors-->
+    <string name="logInError">An error occurred while trying to log in.</string>
+    <string name="no_valid_email">Please enter a valid email\n e.g. example@example.com</string>
+    <string name="wrongCreds">Invalid email or password.</string>
+    <string name="Last_name">Enter your last name</string>
+    <string name="Enter_your_username">Enter your email</string>
+    <string name="Password_length">Password must contain at least 6 characters</string>
+    <string name="Password_match">Your passwords do not match</string>
+    <string name="signin_Error">A problem occurred when registering the user.</string>
+
+</resources>

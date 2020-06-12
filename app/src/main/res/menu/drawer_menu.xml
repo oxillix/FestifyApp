@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home_2"
+            android:title="@string/drawer_menu_home" />
+        <item
+            android:id="@+id/nav_all_rooms"
+            android:icon="@drawable/ic_menu_room"
+            android:title="@string/drawer_menu_all_rooms" />
+
+        <item
+            android:id="@+id/nav_rooms_by_location"
+            android:icon="@drawable/ic_menu_planet_earth"
+            android:title="@string/drawer_menu_rooms_by_location" />
+    </group>
+
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_menu_user"
+                android:title="@string/drawer_menu_profile" />
+    </group>
+</menu>

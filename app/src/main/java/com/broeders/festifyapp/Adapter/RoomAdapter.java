@@ -79,7 +79,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHold
     public class RoutesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtRoomName;
       //  public TextView txtArtist;
-        public Button likeButton;
+        public Button joinRoomButton;
         private Integer clickCounter = 1;
 
         CardView cardView;
@@ -93,12 +93,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHold
             txtRoomName = itemView.findViewById(R.id.roomNameTextView);
            // txtArtist = itemView.findViewById(R.id.artistTextView);
             //button
-            likeButton = itemView.findViewById(R.id.startRouteButton);
+            joinRoomButton = itemView.findViewById(R.id.joinRoomButton);
 
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);
 
-            likeButton.setOnClickListener(new View.OnClickListener() {
+            joinRoomButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try{
@@ -131,9 +131,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHold
             editor = pref.edit();
 
             if (clickCounter % 2 == 0) {
-                likeButton.setVisibility(View.VISIBLE);
+                joinRoomButton.setVisibility(View.VISIBLE);
             } else {
-                likeButton.setVisibility(View.GONE);
+                joinRoomButton.setVisibility(View.GONE);
                 //breng naar routeactivity
             }
         }

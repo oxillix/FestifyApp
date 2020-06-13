@@ -93,7 +93,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
             txtSong = itemView.findViewById(R.id.songTextView);
             txtArtist = itemView.findViewById(R.id.artistTextView);
             //button
-            likeButton = itemView.findViewById(R.id.startRouteButton);
+            likeButton = itemView.findViewById(R.id.LikeSongButton);
 
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);

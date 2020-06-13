@@ -51,4 +51,8 @@
     <!-- Home fragment -->
     <string name="Slogan">Get your Party started with Festify</string>
     <string name="Info">Festify is a free app that lets your guests choose which music should be played using their smartphones.</string>
+    <!-- rooms -->
+    <string name="JoinRoomButtonText">Join room</string>
+    <!-- like -->
+    <string name="Liketxt">Like</string>
 </resources>

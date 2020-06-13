@@ -11,12 +11,12 @@
             android:title="@string/drawer_menu_home" />
         <item
             android:id="@+id/nav_all_rooms"
-            android:icon="@drawable/ic_menu_room"
+            android:icon="@drawable/ic_menu_planet_earth"
             android:title="@string/drawer_menu_all_rooms" />
 
         <item
-            android:id="@+id/nav_rooms_by_location"
-            android:icon="@drawable/ic_menu_planet_earth"
+            android:id="@+id/nav_room_by_location"
+            android:icon="@drawable/ic_menu_room"
             android:title="@string/drawer_menu_rooms_by_location" />
     </group>
 
@@ -26,7 +26,7 @@
         android:checkableBehavior="single">
 
             <item
-                android:id="@+id/nav_profile"
+                android:id="@+id/nav_MyProfile"
                 android:icon="@drawable/ic_menu_user"
                 android:title="@string/drawer_menu_profile" />
     </group>

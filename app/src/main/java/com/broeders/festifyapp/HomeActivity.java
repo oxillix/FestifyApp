@@ -59,14 +59,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-               //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
-
+               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
                 break;
-            case R.id.nav_rooms_by_location:
+            case R.id.nav_room_by_location:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SongsFragment()).commit();
-
                 break;
-            case R.id.nav_profile:
+            case R.id.nav_MyProfile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyProfile()).commit();
                 break;
         }

@@ -2,13 +2,14 @@
     <string name="app_name">Festify</string>
     <!--Drawer Menu-->
     <string name="drawer_menu_profile">My Profile</string>
+    <string name="drawer_menu_logout">Logout</string>
     <string name="drawer_menu_home">Home</string>
     <!--Andere shizzle-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!--Andere shizzle-->
     <string name="drawer_menu_all_rooms">All Rooms</string>
-    <string name="drawer_menu_rooms_by_location">Rooms by location</string>
+    <string name="drawer_menu_room_by_location">Room by location</string>
     <!--Login-->
     <string name="Enter_your_email">Enter your email</string>
     <string name="EnterPassword">Enter your password</string>
@@ -45,7 +46,9 @@
     <string name="routeItem_no_user">routeItem_no_user</string>
     <string name="routeItem_no_description">RouteItem_No_Description</string>
     <string name="routes_no_title">routes_no_title</string>
-    <string name="routes_fetching_error">routes_fetching_erros</string>
-    <string name="retry">retryu</string>
-
+    <string name="routes_fetching_error">routes_fetching_errors</string>
+    <string name="retry">retry</string>
+    <!-- Home fragment -->
+    <string name="Slogan">Get your Party started with Festify</string>
+    <string name="Info">Festify is a free app that lets your guests choose which music should be played using their smartphones.</string>
 </resources>

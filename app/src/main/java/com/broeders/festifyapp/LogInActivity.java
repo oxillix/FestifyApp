@@ -100,8 +100,6 @@ public class LogInActivity extends AppCompatActivity {
         setUserValues();
         if (verifyData()) {
             checkLogin(email, password);
-            //TODO: Verwijder
-            //authLogin();
         }
     }
 
@@ -129,51 +127,6 @@ public class LogInActivity extends AppCompatActivity {
         return true;
     }
 
-    //TODO: functionaliteiten vanuit deze functie in andere steken
-    protected void authLogin() {
-        txtError.setTextColor(getResources().getColor(R.color.colorError));
-
-        if (isNetworkAvailable() == false) {
-            txtError.setText(R.string.noNetwork);
-            progressDialog.dismiss();
-        } else {
-            RequestQueue loginRequestQueue = Volley.newRequestQueue(this);
-
-            String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=checkLogin&Email=%s&Password=%s", email, password);
-            StringRequest loginRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    //TODO: voor debuggen, verwijder!!!!!
-                    txtError.setText(response);
-                    if (response.contains("true") || response.contains("True")) {
-                        String userID = response.substring(response.indexOf(",") + 1, response.indexOf(";"));
-
-                        //initialising user
-                        //TODO:change
-                        //getUser(userID);
-                        //end requesting user
-
-                        editor.putBoolean("isNew", false);
-                        editor.putString("userID",userID);
-                        editor.commit();
-
-                        goToHome();
-                    } else {
-                        txtError.setText(R.string.wrongCreds);
-                    }
-                    progressDialog.dismiss();
-                }
-            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtError.setText(R.string.logInError);
-                    progressDialog.dismiss();
-                }
-            });
-            loginRequestQueue.add(loginRequest);
-        }
-    }
-
     private void checkLogin(String emailString, String wachtwoordString) {
         if (isNetworkAvailable() == false) {
             txtError.setText(R.string.noNetwork);
@@ -189,7 +142,7 @@ public class LogInActivity extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
                             try {
                                 System.out.println(response);
-                                //TODO:change to int
+
                                 int accountID = response.getInt("AccountID");
                                 String username = response.getString("accountNaam");
                                 String password = response.getString("password");
@@ -203,6 +156,7 @@ public class LogInActivity extends AppCompatActivity {
                                 editor.putString("location", location);
                                 editor.commit();
                                 progressDialog.dismiss();
+
 
                                 goToHome();
                             } catch (JSONException e) {

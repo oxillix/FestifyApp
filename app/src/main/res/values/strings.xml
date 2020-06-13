@@ -37,5 +37,8 @@
     <string name="Password_length">Password must contain at least 6 characters</string>
     <string name="Password_match">Your passwords do not match</string>
     <string name="signin_Error">A problem occurred when registering the user.</string>
+    <!-- Profile view -->
+    <string name="Show_Email">Email:</string>
+    <string name="Show_Username">Username:</string>
 
 </resources>

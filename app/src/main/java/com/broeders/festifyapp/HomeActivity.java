@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,11 +39,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         String user_Email =  pref.getString("email", "no email");
-        String user_FirstName =  pref.getString("firstName", "no first name");
-        String user_LastName =  pref.getString("lastName", "no last name");
+        String user_Username =  pref.getString("username", "no username");
 
         navEmail.setText(user_Email);
-        navName.setText(user_FirstName + " " + user_LastName);
+        navName.setText(user_Username);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -59,10 +59,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+               //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
                 break;
             case R.id.nav_profile:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyProfile()).commit();
                 break;
         }
 

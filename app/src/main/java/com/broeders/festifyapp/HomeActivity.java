@@ -38,11 +38,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         String user_Email =  pref.getString("email", "no email");
-        String user_FirstName =  pref.getString("firstName", "no first name");
-        String user_LastName =  pref.getString("lastName", "no last name");
+        String user_Username =  pref.getString("username", "no username");
 
         navEmail.setText(user_Email);
-        navName.setText(user_FirstName + " " + user_LastName);
+        navName.setText(user_Username);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);

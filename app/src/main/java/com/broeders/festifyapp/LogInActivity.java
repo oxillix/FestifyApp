@@ -204,6 +204,7 @@ public class LogInActivity extends AppCompatActivity {
                                 editor.commit();
                                 progressDialog.dismiss();
 
+
                                 goToHome();
                             } catch (JSONException e) {
                                 e.printStackTrace();

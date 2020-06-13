@@ -170,17 +170,16 @@ public class SignInActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     //voor te debuggen, mag weg
-                    //TODO: weg doen
                     txtError.setText(response);
-                    if (response.contains("true") || response.length() == 0) {
+                    if (response == null) {
+                        txtError.setText(R.string.signin_Error);
+                    } else {
                         editor.putString("username",username);
                         editor.putString("email",email);
                         editor.putString("password",password);
                         editor.commit();
 
                         goToHome();
-                    } else {
-                        txtError.setText(R.string.signin_Error);
                     }
                     progressDialog.dismiss();
                 }

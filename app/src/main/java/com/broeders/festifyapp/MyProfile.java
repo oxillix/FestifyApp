@@ -35,8 +35,8 @@ public class MyProfile extends Fragment {
         String user_Email =  pref.getString("email", "no email");
         String user_Username =  pref.getString("username", "no username");
 
-        Email.setText(user_Email);
-        Username.setText(user_Username);
+        Email.setText("Email: " + user_Email);
+        Username.setText("Username: " + user_Username);
         //TODO: verander alles in deze torrie
 
 

@@ -17,7 +17,7 @@
         <item
             android:id="@+id/nav_room_by_location"
             android:icon="@drawable/ic_menu_room"
-            android:title="@string/drawer_menu_rooms_by_location" />
+            android:title="@string/drawer_menu_room_by_location" />
     </group>
 
 

@@ -24,29 +24,29 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHolder> {
+public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHolder> {
     private Context mContext;
-    private ArrayList<SongItem> mSongsList;
+    private ArrayList<RoomItem> mRoomsList;
 
-    public SongAdapter(Context context, ArrayList<SongItem> songsList) {
+    public RoomAdapter(Context context, ArrayList<RoomItem> roomsList) {
         mContext = context;
-        mSongsList = songsList;
+        mRoomsList = roomsList;
     }
 
     @Override
     public RoutesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item_room, parent, false);
         return new RoutesViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RoutesViewHolder holder, int position) {
-        SongItem currentItem = mSongsList.get(position);
+        RoomItem currentItem = mRoomsList.get(position);
 
         //get
-        int songID = currentItem.getSongID();
-        String songTitle = currentItem.getSongTitle();
-        String songArtist = currentItem.getSongArtist();
+        int roomID = currentItem.getRoomID();
+        String roomName = currentItem.getRoomName();
+       // String songArtist = currentItem.getSongArtist();
         //String routeTitle = currentItem.getRouteTitle();
         //String creatorName = currentItem.getCreator();
         //String routeDescription = currentItem.getDescription();
@@ -67,18 +67,18 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
         holder.TextViewInfo.setText(location + " - " + routeLength + " km");
         */
 
-        holder.txtSong.setText(String.format("%s",songTitle));
-        holder.txtArtist.setText(String.format("%s",songArtist));
+        holder.txtRoomName.setText(String.format("%s",roomName));
+     //   holder.txtArtist.setText(String.format("%s",songArtist));
     }
 
     @Override
     public int getItemCount() {
-        return mSongsList.size();
+        return mRoomsList.size();
     }
 
     public class RoutesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtSong;
-        public TextView txtArtist;
+        public TextView txtRoomName;
+      //  public TextView txtArtist;
         public Button likeButton;
         private Integer clickCounter = 1;
 
@@ -90,8 +90,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
         public RoutesViewHolder(View itemView) {
             super(itemView);
             //songs
-            txtSong = itemView.findViewById(R.id.songTextView);
-            txtArtist = itemView.findViewById(R.id.artistTextView);
+            txtRoomName = itemView.findViewById(R.id.roomNameTextView);
+           // txtArtist = itemView.findViewById(R.id.artistTextView);
             //button
             likeButton = itemView.findViewById(R.id.startRouteButton);
 
@@ -104,9 +104,9 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
                     try{
                         int clickedPosition = getAdapterPosition();
 
-                        editor.putString("currentSongArtist", mSongsList.get(clickedPosition).getSongArtist());
-                        editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
-                       // editor.putBoolean("isDoingRoute", true);
+                        editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getaccountID());
+                        editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
+                      //  editor.putBoolean("isDoingRoute", true);
                         editor.commit();
 
                         //TODO: fix

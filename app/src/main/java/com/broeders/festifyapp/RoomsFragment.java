@@ -19,11 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.broeders.festifyapp.Adapter.SongAdapter;
-import com.broeders.festifyapp.models.SongItem;
-import com.broeders.festifyapp.Adapter.SongAdapter;
+import com.broeders.festifyapp.Adapter.RoomAdapter;
 import com.broeders.festifyapp.HelperClasses.NetworkCheckingClass;
-import com.broeders.festifyapp.models.SongItem;
+import com.broeders.festifyapp.models.RoomItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,14 +29,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SongsFragment extends Fragment {
+public class RoomsFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private SongAdapter mSongAdapter;
-    private ArrayList<SongItem> mSongsList;
+    private RoomAdapter mRoomAdapter;
+    private ArrayList<RoomItem> mRoomsList;
     private RequestQueue mRequestQueue;
 
-    private TextView songText;
-    private TextView artistText;
+    private TextView roomNameText;
 
     private TextView errorText;
     private Button retryButton;
@@ -51,18 +48,18 @@ public class SongsFragment extends Fragment {
         progressBar = rootView.findViewById(R.id.routes_progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Songs in room");
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Rooms");
         //initialising
         mRecyclerView = rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mSongsList = new ArrayList<>();
+        mRoomsList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(getContext());
 
-        songText = rootView.findViewById(R.id.songTextView);
-        artistText = rootView.findViewById(R.id.artistTextView);
+        roomNameText = rootView.findViewById(R.id.roomNameTextView);
+       // artistText = rootView.findViewById(R.id.artistTextView);
 
         errorText = rootView.findViewById(R.id.routes_error_textView);
         retryButton = rootView.findViewById(R.id.button_retry_routes);
@@ -84,7 +81,7 @@ public class SongsFragment extends Fragment {
         errorText.setVisibility(View.GONE);
         retryButton.setVisibility(View.GONE);
 
-        String url = "http://ineke.broeders.be/1920festify/webservice.aspx?actie=getSongs";
+        String url = "http://ineke.broeders.be/1920festify/webservice.aspx?actie=getRooms";
 
         if (NetworkCheckingClass.isNetworkAvailable(getContext())) {
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
@@ -93,18 +90,19 @@ public class SongsFragment extends Fragment {
                     try {
                         for (int i = 0; i < response.length(); i++) {
                             //Get JSONObject route
-                            JSONObject song = response.getJSONObject(i);
+                            JSONObject room = response.getJSONObject(i);
 
                             //get data
-                            String songTitle = song.getString("songTitle");
-                            String songArtist = song.getString("songArtist");
-                            int songID = song.getInt("SongID");
+                            String roomName = room.getString("roomName");
+                            String Locatie = room.getString("Locatie");
+                            int roomID = room.getInt("RoomID");
+                            int accountID = room.getInt("accountID");
 
-                            mSongsList.add(new SongItem(songID,songTitle,songArtist));
+                            mRoomsList.add(new RoomItem(roomID, accountID, roomName,Locatie));
                         }
 
-                        mSongAdapter = new SongAdapter(getContext(), mSongsList);
-                        mRecyclerView.setAdapter(mSongAdapter);
+                        mRoomAdapter = new RoomAdapter(getContext(), mRoomsList);
+                        mRecyclerView.setAdapter(mRoomAdapter);
                         progressBar.setVisibility(View.GONE);
                     } catch (JSONException e) {
                         errorText.setText(e.toString());

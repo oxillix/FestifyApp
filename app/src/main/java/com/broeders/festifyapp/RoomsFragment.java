@@ -1,7 +1,9 @@
 package com.broeders.festifyapp;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,11 +38,11 @@ public class RoomsFragment extends Fragment {
     private RequestQueue mRequestQueue;
 
     private TextView roomNameText;
-
+    public FloatingActionButton addButton;
     private TextView errorText;
     private Button retryButton;
     ProgressBar progressBar;
-
+    final Handler handler = new Handler();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,7 +62,7 @@ public class RoomsFragment extends Fragment {
 
         roomNameText = rootView.findViewById(R.id.roomNameTextView);
        // artistText = rootView.findViewById(R.id.artistTextView);
-
+        addButton = rootView.findViewById(R.id.addButton);
         errorText = rootView.findViewById(R.id.routes_error_textView);
         retryButton = rootView.findViewById(R.id.button_retry_routes);
         retryButton.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +73,19 @@ public class RoomsFragment extends Fragment {
         });
         //end initialising
 
-        parseJSON();
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddRoomFragment()).commit();
+            }
+        });
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                parseJSON();
+            }
+        }, 1000);
 
         return rootView;
     }

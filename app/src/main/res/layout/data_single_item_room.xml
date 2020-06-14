@@ -22,7 +22,8 @@
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="11dp"
-            android:paddingRight="11dp">
+            android:paddingRight="11dp"
+            >
 
 
             <TextView

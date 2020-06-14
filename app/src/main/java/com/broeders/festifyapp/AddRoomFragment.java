@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,30 +27,37 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.broeders.festifyapp.HelperClasses.NetworkCheckingClass;
 
+import static android.content.Context.MODE_PRIVATE;
 
-public class AddSongFragment extends Fragment {
 
-    Button addSongButton;
-    EditText txtArtist,txtSong;
-    String artist,song;
+public class AddRoomFragment extends Fragment {
+
+    Button addRoomButton;
+    EditText txtRoomName;
+    String roomName,Location;
+    int accountID;
     TextView txtError;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_addsong, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add song");
+        pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
+        accountID = pref.getInt("accountID",0);
+        View rootView = inflater.inflate(R.layout.activity_addroom, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add room");
 
         txtError = rootView.findViewById(R.id.errorTextView);
-        txtArtist = rootView.findViewById(R.id.txtAddArtist);
-        txtSong = rootView.findViewById(R.id.txtAddSong);
-        addSongButton = rootView.findViewById(R.id.addSongButton);
-        addSongButton.setOnClickListener(new View.OnClickListener() {
+        txtRoomName = rootView.findViewById(R.id.txtAddRoomName);
+
+        addRoomButton = rootView.findViewById(R.id.addRoomButton);
+        addRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setUserValues();
-                addSong();
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new SongsFragment()).commit();
+                addRoom();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new RoomsFragment()).commit();
             }
         });
 
@@ -57,11 +65,10 @@ public class AddSongFragment extends Fragment {
     }
 
     public void setUserValues(){
-        artist = txtArtist.getText().toString().trim();
-        song = txtSong.getText().toString().trim();
+        roomName = txtRoomName.getText().toString().trim();
     }
 
-    protected void addSong(){
+    protected void addRoom(){
         txtError.setTextColor(getResources().getColor(R.color.colorError));
 
         if (NetworkCheckingClass.isNetworkAvailable(getContext()) == false) {
@@ -69,7 +76,7 @@ public class AddSongFragment extends Fragment {
         } else {
             RequestQueue signinRequestQueue = Volley.newRequestQueue(getContext());
 
-            String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=addSong&songTitle=%s&songArtist=%s", song, artist);
+            String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=addRoom&accountID=%s&roomname=%s&Location=%s", accountID, roomName, Location);
             StringRequest signInRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

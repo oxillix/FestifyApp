@@ -53,6 +53,7 @@
     <string name="Info">Festify is a free app that lets your guests choose which music should be played using their smartphones.</string>
     <!-- rooms -->
     <string name="JoinRoomButtonText">Join room</string>
+    <string name="addRoomNameText">Room name</string>
     <!-- like -->
     <string name="Liketxt">Like</string>
     <!-- songs -->

@@ -3,6 +3,7 @@ package com.broeders.festifyapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -53,7 +54,7 @@ public class SongsFragment extends Fragment {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     String roomName;
-
+    final Handler handler = new Handler();
 
     @Nullable
     @Override
@@ -89,18 +90,16 @@ public class SongsFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO:Fix voor naar add pagina
-
-              //getActivity().beginTransaction().replace(R.id.fragment_container, new AddSongFragment()).commit();
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddSongFragment()).commit();
-                //Intent login = new Intent(getContext(), AddSongFragment.class);
-                // login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-               // startActivity(login);
-
             }
         });
 
-        parseJSON();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                parseJSON();
+            }
+        }, 1000);
 
         return rootView;
     }

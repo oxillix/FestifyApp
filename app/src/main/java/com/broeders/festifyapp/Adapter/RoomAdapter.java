@@ -107,7 +107,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHold
 
                         editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
                         editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
-
                       //  editor.putBoolean("isDoingRoute", true);
 
                         editor.commit();

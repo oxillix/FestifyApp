@@ -52,17 +52,19 @@ public class SongsFragment extends Fragment {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-
+    String roomName;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
         View rootView = inflater.inflate(R.layout.fragment_songs, container, false);
+        roomName = pref.getString("currentRoomName","geen room name");
         progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(roomName);
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Songs in room");
         //initialising
         mRecyclerView = rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -108,7 +110,7 @@ public class SongsFragment extends Fragment {
         errorText.setVisibility(View.GONE);
         retryButton.setVisibility(View.GONE);
 
-        pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
+
 
         int roomID =  pref.getInt("currentRoomID",0);
 

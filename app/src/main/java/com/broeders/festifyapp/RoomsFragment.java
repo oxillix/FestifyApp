@@ -98,7 +98,8 @@ public class RoomsFragment extends Fragment {
                             int roomID = room.getInt("RoomID");
                             int accountID = room.getInt("accountID");
 
-                            mRoomsList.add(new RoomItem(roomID, accountID, roomName,Locatie));
+                            mRoomsList.add(new RoomItem(roomID, accountID, Locatie,roomName));
+
                         }
 
                         mRoomAdapter = new RoomAdapter(getContext(), mRoomsList);

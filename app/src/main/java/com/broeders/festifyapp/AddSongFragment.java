@@ -44,7 +44,6 @@ public class AddSongFragment extends Fragment {
         txtArtist = rootView.findViewById(R.id.txtAddArtist);
         txtSong = rootView.findViewById(R.id.txtAddSong);
         addSongButton = rootView.findViewById(R.id.addSongButton);
-        //TODO: verander alles in deze torrie
         addSongButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

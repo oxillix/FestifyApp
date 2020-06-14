@@ -1,5 +1,7 @@
 package com.broeders.festifyapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,9 +23,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.broeders.festifyapp.Adapter.SongAdapter;
 import com.broeders.festifyapp.models.SongItem;
-import com.broeders.festifyapp.Adapter.SongAdapter;
 import com.broeders.festifyapp.HelperClasses.NetworkCheckingClass;
-import com.broeders.festifyapp.models.SongItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,24 +31,33 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SongsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private SongAdapter mSongAdapter;
     private ArrayList<SongItem> mSongsList;
     private RequestQueue mRequestQueue;
 
+
     private TextView songText;
     private TextView artistText;
+    private int roomID;
 
     private TextView errorText;
     private Button retryButton;
     ProgressBar progressBar;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_songs, container, false);
-        progressBar = rootView.findViewById(R.id.routes_progressBar);
+        progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Songs in room");
@@ -63,7 +72,6 @@ public class SongsFragment extends Fragment {
 
         songText = rootView.findViewById(R.id.songTextView);
         artistText = rootView.findViewById(R.id.artistTextView);
-
         errorText = rootView.findViewById(R.id.routes_error_textView);
         retryButton = rootView.findViewById(R.id.button_retry_routes);
         retryButton.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +92,13 @@ public class SongsFragment extends Fragment {
         errorText.setVisibility(View.GONE);
         retryButton.setVisibility(View.GONE);
 
-        String url = "http://ineke.broeders.be/1920festify/webservice.aspx?actie=getSongs";
+        pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
 
+        int roomID =  pref.getInt("currentRoomID",0);
+
+        System.out.println(roomID);
+        String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=getSongsInRoom&roomID=%s", roomID);
+        System.out.println(url);
         if (NetworkCheckingClass.isNetworkAvailable(getContext())) {
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
                 @Override

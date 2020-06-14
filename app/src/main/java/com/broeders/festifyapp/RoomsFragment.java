@@ -45,7 +45,7 @@ public class RoomsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_songs, container, false);
-        progressBar = rootView.findViewById(R.id.routes_progressBar);
+        progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Rooms");

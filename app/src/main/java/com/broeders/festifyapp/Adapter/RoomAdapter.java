@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.broeders.festifyapp.SongsFragment;
 import com.broeders.festifyapp.models.RoomItem;
 import com.broeders.festifyapp.R;
 import com.broeders.festifyapp.models.SongItem;
@@ -104,14 +105,16 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoutesViewHold
                     try{
                         int clickedPosition = getAdapterPosition();
 
-                        editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getaccountID());
+                        editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
                         editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
+
                       //  editor.putBoolean("isDoingRoute", true);
+
                         editor.commit();
                         //TODO: fix
-                        //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new mapRouteFragment();
-                        //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
+                        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                        Fragment myFragment = new SongsFragment();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();

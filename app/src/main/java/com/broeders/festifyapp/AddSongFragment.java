@@ -26,6 +26,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.broeders.festifyapp.HelperClasses.NetworkCheckingClass;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class AddSongFragment extends Fragment {
 
@@ -33,10 +35,17 @@ public class AddSongFragment extends Fragment {
     EditText txtArtist,txtSong;
     String artist,song;
     TextView txtError;
+    int roomID;
+    int accountID;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
+        accountID = pref.getInt("accountID",0);
+        roomID = pref.getInt("currentRoomID",0);
         View rootView = inflater.inflate(R.layout.activity_addsong, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Add song");
 
@@ -69,7 +78,7 @@ public class AddSongFragment extends Fragment {
         } else {
             RequestQueue signinRequestQueue = Volley.newRequestQueue(getContext());
 
-            String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=addSong&songTitle=%s&songArtist=%s", song, artist);
+            String url = String.format("http://ineke.broeders.be/1920festify/Webservice.aspx?actie=addSong&songTitle=%s&songArtist=%s&roomID=%s&accountID=%s", song, artist, roomID, accountID);
             StringRequest signInRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {

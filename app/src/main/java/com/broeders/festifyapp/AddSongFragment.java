@@ -38,7 +38,6 @@ public class AddSongFragment extends Fragment {
     int roomID;
     int accountID;
     SharedPreferences pref;
-    SharedPreferences.Editor editor;
 
     @Nullable
     @Override

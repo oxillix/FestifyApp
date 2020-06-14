@@ -61,7 +61,6 @@ public class RoomsFragment extends Fragment {
         mRequestQueue = Volley.newRequestQueue(getContext());
 
         roomNameText = rootView.findViewById(R.id.roomNameTextView);
-       // artistText = rootView.findViewById(R.id.artistTextView);
         addButton = rootView.findViewById(R.id.addButton);
         errorText = rootView.findViewById(R.id.routes_error_textView);
         retryButton = rootView.findViewById(R.id.button_retry_routes);

@@ -14,7 +14,7 @@
     <string name="Enter_your_email">Enter your email</string>
     <string name="EnterPassword">Enter your password</string>
     <string name="Log_In">Log In</string>
-    <string name="Dont_have_account">Don\'t have an account? Sign In.</string>
+    <string name="Dont_have_account">Don\'t have an account? Sign up.</string>
     <!--Login Progress Dialog-->
     <string name="Please_Wait">Please Wait</string>
     <string name="Logging_In">Logging In</string>
@@ -55,4 +55,9 @@
     <string name="JoinRoomButtonText">Join room</string>
     <!-- like -->
     <string name="Liketxt">Like</string>
+    <!-- songs -->
+    <string name="artistName">Artist</string>
+    <string name="songName">Song title</string>
+    <!-- button -->
+    <string name="addButton">Add</string>
 </resources>

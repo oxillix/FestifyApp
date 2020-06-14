@@ -1,26 +1,17 @@
 package com.broeders.festifyapp.Adapter;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.broeders.festifyapp.LogInActivity;
-import com.broeders.festifyapp.RoomsFragment;
-import com.broeders.festifyapp.models.RoomItem;
 import com.broeders.festifyapp.R;
 import com.broeders.festifyapp.models.SongItem;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -100,6 +91,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);
 
+
             likeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -122,6 +114,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }
+
             });
         }
 
@@ -140,4 +133,5 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
             }
         }
     }
+
 }

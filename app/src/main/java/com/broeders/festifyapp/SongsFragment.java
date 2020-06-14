@@ -1,9 +1,10 @@
 package com.broeders.festifyapp;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,7 @@ public class SongsFragment extends Fragment {
     private TextView errorText;
     private Button retryButton;
     ProgressBar progressBar;
+    public FloatingActionButton addButton;
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -69,7 +71,7 @@ public class SongsFragment extends Fragment {
         mSongsList = new ArrayList<>();
 
         mRequestQueue = Volley.newRequestQueue(getContext());
-
+        addButton = rootView.findViewById(R.id.addButton);
         songText = rootView.findViewById(R.id.songTextView);
         artistText = rootView.findViewById(R.id.artistTextView);
         errorText = rootView.findViewById(R.id.routes_error_textView);
@@ -81,6 +83,20 @@ public class SongsFragment extends Fragment {
             }
         });
         //end initialising
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO:Fix voor naar add pagina
+
+              //getActivity().beginTransaction().replace(R.id.fragment_container, new AddSongFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddSongFragment()).commit();
+                //Intent login = new Intent(getContext(), AddSongFragment.class);
+                // login.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+               // startActivity(login);
+
+            }
+        });
 
         parseJSON();
 

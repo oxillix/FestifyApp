@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.broeders.festifyapp.Adapter.RemoveSongAdapter;
 import com.broeders.festifyapp.Adapter.SongAdapter;
@@ -45,9 +46,10 @@ public class RemoveSongFragment extends Fragment {
     private TextView songText;
     private TextView artistText;
     private int roomID;
+    private  int accountID;
 
-    private TextView errorText;
-    private Button retryButton;
+     TextView errorText;
+     Button retryButton;
     ProgressBar progressBar;
     public FloatingActionButton removeRoomButton;
 
@@ -90,7 +92,8 @@ public class RemoveSongFragment extends Fragment {
         removeRoomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddSongFragment()).commit();
+                removeRoom();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyRoomsFragment()).commit();
             }
         });
 
@@ -104,6 +107,37 @@ public class RemoveSongFragment extends Fragment {
         return rootView;
     }
 
+    protected void removeRoom(){
+       roomID = pref.getInt("currentRoomID",0);
+       accountID = pref.getInt("accountID",0);
+        if (NetworkCheckingClass.isNetworkAvailable(getContext()) == false) {
+
+        } else {
+            RequestQueue signinRequestQueue = Volley.newRequestQueue(getContext());
+
+            String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=removeRoomByAccountID&accountID=%s&roomID=%s", accountID, roomID);
+            StringRequest signInRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //voor te debuggen, mag weg
+
+                    if (response == null) {
+
+                    } else {
+
+                    }
+                }
+            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+
+            signinRequestQueue.add(signInRequest);
+        }
+    }
+
     private void parseJSON() {
         progressBar.setVisibility(View.VISIBLE);
         errorText.setVisibility(View.GONE);
@@ -112,8 +146,8 @@ public class RemoveSongFragment extends Fragment {
 
 
         int roomID =  pref.getInt("currentRoomID",0);
+        int songID = pref.getInt("currentSongID",0);
 
-        System.out.println(roomID);
         String url = String.format("http://ineke.broeders.be/1920festify/webservice.aspx?actie=getSongsInRoom&roomID=%s", roomID);
         System.out.println(url);
         if (NetworkCheckingClass.isNetworkAvailable(getContext())) {
@@ -169,4 +203,5 @@ public class RemoveSongFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
         }
     }
+
 }

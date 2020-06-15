@@ -55,7 +55,7 @@ public class MyRoomsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         pref = getContext().getSharedPreferences("pref", MODE_PRIVATE);
-        accountID = pref.getInt("accountID",1);
+        accountID = pref.getInt("accountID",0);
         View rootView = inflater.inflate(R.layout.fragment_my_rooms, container, false);
         progressBar = rootView.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);

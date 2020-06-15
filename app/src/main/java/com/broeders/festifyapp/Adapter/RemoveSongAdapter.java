@@ -103,6 +103,8 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
                         editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
                         editor.commit();
 
+
+
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
                         //Fragment myFragment = new RoomsFragment();

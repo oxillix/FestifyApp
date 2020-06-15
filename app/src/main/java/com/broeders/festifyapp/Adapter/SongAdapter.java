@@ -98,10 +98,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoomViewHolder
                     try{
                         int clickedPosition = getAdapterPosition();
 
-                        editor.putInt("currentSongID", mSongsList.get(clickedPosition).getSongID());
-                        editor.putString("currentSongArtist", mSongsList.get(clickedPosition).getSongArtist());
-                        editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
-                        editor.commit();
+                      //editor.putInt("currentSongID", mSongsList.get(clickedPosition).getSongID());
+                        //editor.putString("currentSongArtist", mSongsList.get(clickedPosition).getSongArtist());
+                        //editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
+                        //editor.commit();
 
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();

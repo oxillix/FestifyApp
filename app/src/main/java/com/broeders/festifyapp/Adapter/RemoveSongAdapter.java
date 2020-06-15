@@ -1,6 +1,9 @@
 package com.broeders.festifyapp.Adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaExtractor;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 
 import com.broeders.festifyapp.R;
+import com.broeders.festifyapp.RemoveSongFragment;
 import com.broeders.festifyapp.models.SongItem;
 
 import java.util.ArrayList;
@@ -40,25 +44,6 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
         int songID = currentItem.getSongID();
         String songTitle = currentItem.getSongTitle();
         String songArtist = currentItem.getSongArtist();
-        //String routeTitle = currentItem.getRouteTitle();
-        //String creatorName = currentItem.getCreator();
-        //String routeDescription = currentItem.getDescription();
-        //info
-        //String location = currentItem.getLocation();
-        //String routeLength = currentItem.getRouteLength();
-
-        //set
-        /*
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.bigImageView);
-        if (!profileImageUrl.contentEquals("")){
-            Picasso.get().load(profileImageUrl).fit().centerInside().transform(new CircleTransform()).into(holder.ProfileImageView);
-        }
-        holder.TextViewTitle.setText(routeTitle);
-        holder.TextViewCreator.setText(creatorName);
-        holder.TextViewDescription.setText(routeDescription);
-        //info
-        holder.TextViewInfo.setText(location + " - " + routeLength + " km");
-        */
 
         holder.txtSong.setText(String.format("%s",songTitle));
         holder.txtArtist.setText(String.format("%s",songArtist));
@@ -97,7 +82,7 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
                 public void onClick(View v) {
                     try{
                         int clickedPosition = getAdapterPosition();
-
+                        editor.putBoolean("removeSongID",true);
                         editor.putInt("currentSongID", mSongsList.get(clickedPosition).getSongID());
                         editor.putString("currentSongArtist", mSongsList.get(clickedPosition).getSongArtist());
                         editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
@@ -106,9 +91,9 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
 
 
                         //TODO: fix
-                        //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new RoomsFragment();
-                        //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
+                        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                        Fragment myFragment = new RemoveSongFragment();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();

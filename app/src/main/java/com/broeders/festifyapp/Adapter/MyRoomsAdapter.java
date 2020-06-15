@@ -15,6 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.broeders.festifyapp.HelperClasses.NetworkCheckingClass;
+import com.broeders.festifyapp.MyRoomsFragment;
+import com.broeders.festifyapp.RemoveSongFragment;
 import com.broeders.festifyapp.SongsFragment;
 import com.broeders.festifyapp.models.RoomItem;
 import com.broeders.festifyapp.R;
@@ -25,18 +34,18 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {
+public class MyRoomsAdapter extends RecyclerView.Adapter<MyRoomsAdapter.RoomViewHolder> {
     private Context mContext;
     private ArrayList<RoomItem> mRoomsList;
 
-    public RoomAdapter(Context context, ArrayList<RoomItem> roomsList) {
+    public MyRoomsAdapter(Context context, ArrayList<RoomItem> roomsList) {
         mContext = context;
         mRoomsList = roomsList;
     }
 
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item_room, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item_my_rooms, parent, false);
         return new RoomViewHolder(v);
     }
 
@@ -44,32 +53,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     public void onBindViewHolder(RoomViewHolder holder, int position) {
         RoomItem currentItem = mRoomsList.get(position);
 
-        //get
         int roomID = currentItem.getRoomID();
         String roomName = currentItem.getRoomName();
-       // String songArtist = currentItem.getSongArtist();
-        //String routeTitle = currentItem.getRouteTitle();
-        //String creatorName = currentItem.getCreator();
-        //String routeDescription = currentItem.getDescription();
-        //info
-        //String location = currentItem.getLocation();
-        //String routeLength = currentItem.getRouteLength();
-
-        //set
-        /*
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.bigImageView);
-        if (!profileImageUrl.contentEquals("")){
-            Picasso.get().load(profileImageUrl).fit().centerInside().transform(new CircleTransform()).into(holder.ProfileImageView);
-        }
-        holder.TextViewTitle.setText(routeTitle);
-        holder.TextViewCreator.setText(creatorName);
-        holder.TextViewDescription.setText(routeDescription);
-        //info
-        holder.TextViewInfo.setText(location + " - " + routeLength + " km");
-        */
 
         holder.txtRoomName.setText(String.format("%s",roomName));
-     //   holder.txtArtist.setText(String.format("%s",songArtist));
+
     }
 
     @Override
@@ -79,26 +67,26 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtRoomName;
-      //  public TextView txtArtist;
-        public Button joinRoomButton;
+        //  public TextView txtArtist;
+        public Button selectRoomButton;
         private Integer clickCounter = 1;
 
         CardView cardView;
 
         SharedPreferences pref;
         SharedPreferences.Editor editor;
+        int roomID;
 
         public RoomViewHolder(View itemView) {
             super(itemView);
             //songs
             txtRoomName = itemView.findViewById(R.id.roomNameTextView);
             //button
-            joinRoomButton = itemView.findViewById(R.id.joinRoomButton);
-
+            selectRoomButton = itemView.findViewById(R.id.selectRoomButton);
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);
 
-            joinRoomButton.setOnClickListener(new View.OnClickListener() {
+            selectRoomButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try{
@@ -106,12 +94,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
                         editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
                         editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
-                      //  editor.putBoolean("isDoingRoute", true);
+                        //  editor.putBoolean("isDoingRoute", true);
 
                         editor.commit();
+                        roomID = pref.getInt("currentRoomID",0);
+
                         //TODO: fix
                         AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        Fragment myFragment = new SongsFragment();
+                        Fragment myFragment = new RemoveSongFragment();
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }catch (Exception e){
                         //TODO: fix
@@ -131,10 +121,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             editor = pref.edit();
 
             if (clickCounter % 2 == 0) {
-                joinRoomButton.setVisibility(View.VISIBLE);
+                selectRoomButton.setVisibility(View.VISIBLE);
             } else {
-                joinRoomButton.setVisibility(View.GONE);
+                selectRoomButton.setVisibility(View.GONE);
             }
         }
     }
+
 }

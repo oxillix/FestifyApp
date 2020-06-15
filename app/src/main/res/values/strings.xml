@@ -4,6 +4,7 @@
     <string name="drawer_menu_profile">My Profile</string>
     <string name="drawer_menu_logout">Logout</string>
     <string name="drawer_menu_home">Home</string>
+    <string name="drawer_menu_my_rooms">My rooms</string>
     <!--Andere shizzle-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -61,4 +62,6 @@
     <string name="songName">Song title</string>
     <!-- button -->
     <string name="addButton">Add</string>
+    <string name="removeButton">Remove</string>
+    <string name="selectButton">Select</string>
 </resources>

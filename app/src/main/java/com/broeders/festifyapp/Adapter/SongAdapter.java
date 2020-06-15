@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHolder> {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoomViewHolder> {
     private Context mContext;
     private ArrayList<SongItem> mSongsList;
 
@@ -27,13 +27,13 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
     }
 
     @Override
-    public RoutesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item, parent, false);
-        return new RoutesViewHolder(v);
+        return new RoomViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(RoutesViewHolder holder, int position) {
+    public void onBindViewHolder(RoomViewHolder holder, int position) {
         SongItem currentItem = mSongsList.get(position);
 
         //get
@@ -69,7 +69,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
         return mSongsList.size();
     }
 
-    public class RoutesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView txtSong;
         public TextView txtArtist;
         public Button likeButton;
@@ -80,7 +80,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoutesViewHold
         SharedPreferences pref;
         SharedPreferences.Editor editor;
 
-        public RoutesViewHolder(View itemView) {
+        public RoomViewHolder(View itemView) {
             super(itemView);
             //songs
             txtSong = itemView.findViewById(R.id.songTextView);

@@ -1,53 +1,45 @@
 package com.broeders.festifyapp.Adapter;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.broeders.festifyapp.SongsFragment;
-import com.broeders.festifyapp.models.RoomItem;
 import com.broeders.festifyapp.R;
 import com.broeders.festifyapp.models.SongItem;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {
+public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.RoomViewHolder> {
     private Context mContext;
-    private ArrayList<RoomItem> mRoomsList;
+    private ArrayList<SongItem> mSongsList;
 
-    public RoomAdapter(Context context, ArrayList<RoomItem> roomsList) {
+    public RemoveSongAdapter(Context context, ArrayList<SongItem> songsList) {
         mContext = context;
-        mRoomsList = roomsList;
+        mSongsList = songsList;
     }
 
     @Override
     public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item_room, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.data_single_item_remove_song, parent, false);
         return new RoomViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(RoomViewHolder holder, int position) {
-        RoomItem currentItem = mRoomsList.get(position);
+        SongItem currentItem = mSongsList.get(position);
 
         //get
-        int roomID = currentItem.getRoomID();
-        String roomName = currentItem.getRoomName();
-       // String songArtist = currentItem.getSongArtist();
+        int songID = currentItem.getSongID();
+        String songTitle = currentItem.getSongTitle();
+        String songArtist = currentItem.getSongArtist();
         //String routeTitle = currentItem.getRouteTitle();
         //String creatorName = currentItem.getCreator();
         //String routeDescription = currentItem.getDescription();
@@ -68,19 +60,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         holder.TextViewInfo.setText(location + " - " + routeLength + " km");
         */
 
-        holder.txtRoomName.setText(String.format("%s",roomName));
-     //   holder.txtArtist.setText(String.format("%s",songArtist));
+        holder.txtSong.setText(String.format("%s",songTitle));
+        holder.txtArtist.setText(String.format("%s",songArtist));
     }
 
     @Override
     public int getItemCount() {
-        return mRoomsList.size();
+        return mSongsList.size();
     }
 
     public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView txtRoomName;
-      //  public TextView txtArtist;
-        public Button joinRoomButton;
+        public TextView txtSong;
+        public TextView txtArtist;
+        public Button removeSongButton;
         private Integer clickCounter = 1;
 
         CardView cardView;
@@ -91,28 +83,30 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         public RoomViewHolder(View itemView) {
             super(itemView);
             //songs
-            txtRoomName = itemView.findViewById(R.id.roomNameTextView);
+            txtSong = itemView.findViewById(R.id.songTextView);
+            txtArtist = itemView.findViewById(R.id.artistTextView);
             //button
-            joinRoomButton = itemView.findViewById(R.id.joinRoomButton);
+            removeSongButton = itemView.findViewById(R.id.removeSongButton);
 
             cardView = itemView.findViewById(R.id.card_view);
             cardView.setOnClickListener(this);
 
-            joinRoomButton.setOnClickListener(new View.OnClickListener() {
+
+            removeSongButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try{
                         int clickedPosition = getAdapterPosition();
 
-                        editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
-                        editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
-                      //  editor.putBoolean("isDoingRoute", true);
-
+                        editor.putInt("currentSongID", mSongsList.get(clickedPosition).getSongID());
+                        editor.putString("currentSongArtist", mSongsList.get(clickedPosition).getSongArtist());
+                        editor.putString("currentSongTitle", mSongsList.get(clickedPosition).getSongTitle());
                         editor.commit();
+
                         //TODO: fix
-                        AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        Fragment myFragment = new SongsFragment();
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
+                        //AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                        //Fragment myFragment = new RoomsFragment();
+                        //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
@@ -120,6 +114,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }
+
             });
         }
 
@@ -131,10 +126,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             editor = pref.edit();
 
             if (clickCounter % 2 == 0) {
-                joinRoomButton.setVisibility(View.VISIBLE);
+                removeSongButton.setVisibility(View.VISIBLE);
             } else {
-                joinRoomButton.setVisibility(View.GONE);
+                removeSongButton.setVisibility(View.GONE);
+                //breng naar routeactivity
             }
         }
     }
+
 }

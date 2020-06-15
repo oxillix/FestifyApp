@@ -25,6 +25,10 @@
         android:id="@+id/menu_bottom"
         android:checkableBehavior="single">
 
+        <item
+            android:id="@+id/nav_MyRooms"
+            android:icon="@drawable/ic_menu_room"
+            android:title="@string/drawer_menu_my_rooms" />
             <item
                 android:id="@+id/nav_MyProfile"
                 android:icon="@drawable/ic_menu_user"

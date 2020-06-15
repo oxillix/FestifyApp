@@ -116,7 +116,6 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
                 removeSongButton.setVisibility(View.VISIBLE);
             } else {
                 removeSongButton.setVisibility(View.GONE);
-                //breng naar routeactivity
             }
         }
     }

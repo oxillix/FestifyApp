@@ -46,7 +46,8 @@
                 android:background="@drawable/buttonshapelogout"
                 android:text="@string/removeButton"
                 android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 

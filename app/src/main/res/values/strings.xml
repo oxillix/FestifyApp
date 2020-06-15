@@ -64,4 +64,5 @@
     <string name="addButton">Add</string>
     <string name="removeButton">Remove</string>
     <string name="selectButton">Select</string>
+    <string name="default_txtLocatie">Binnen een straal van: 10km</string>
 </resources>

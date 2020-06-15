@@ -87,7 +87,7 @@ public class MyRoomsFragment extends Fragment {
             public void run() {
                 parseJSON();
             }
-        }, 1000);
+        }, 1500);
 
         return rootView;
     }

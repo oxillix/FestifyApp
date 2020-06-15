@@ -42,7 +42,6 @@ public class RemoveSongFragment extends Fragment {
     private ArrayList<SongItem> mSongsList;
     private RequestQueue mRequestQueue;
 
-
     private TextView songText;
     private TextView artistText;
     private int roomID;
@@ -95,19 +94,13 @@ public class RemoveSongFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 removeRoom();
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyRoomsFragment()).commit();
             }
         });
-System.out.println(remove);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(remove == true){
-                    removeSong();
-                }
-                    parseJSON();
-            }
-        }, 1000);
+
+        System.err.println("remove: " + remove);
+
+
+        parseJSON();
 
         return rootView;
     }
@@ -127,9 +120,10 @@ System.out.println(remove);
                     //voor te debuggen, mag weg
 
                     if (response == null) {
-
+                        //TODO: fix errorhandelimg
+                        errorText.setText("IZJEN PROBLEEM");
                     } else {
-
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyRoomsFragment()).commit();
                     }
                 }
             }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
@@ -138,7 +132,6 @@ System.out.println(remove);
 
                 }
             });
-
             signinRequestQueue.add(signInRequest);
         }
     }
@@ -162,7 +155,8 @@ System.out.println(remove);
 
                     }
                 }
-            }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+            }, new Response.ErrorListener() {
+                //Create an error listener to handle errors appropriately.
                 @Override
                 public void onErrorResponse(VolleyError error) {
 

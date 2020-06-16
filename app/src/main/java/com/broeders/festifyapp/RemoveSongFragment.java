@@ -98,7 +98,9 @@ public class RemoveSongFragment extends Fragment {
         });
 
         System.err.println("remove: " + remove);
-
+if(remove == true){
+    removeSong();
+}
 
         parseJSON();
 

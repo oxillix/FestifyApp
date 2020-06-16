@@ -80,8 +80,8 @@ public class RemoveSongFragment extends Fragment {
         removeRoomButton = rootView.findViewById(R.id.removeRoomButton);
         songText = rootView.findViewById(R.id.songTextView);
         artistText = rootView.findViewById(R.id.artistTextView);
-        errorText = rootView.findViewById(R.id.routes_error_textView);
-        retryButton = rootView.findViewById(R.id.button_retry_routes);
+        errorText = rootView.findViewById(R.id.error_textView);
+        retryButton = rootView.findViewById(R.id.button_retry);
         retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,7 +187,7 @@ if(remove == true){
                 public void onResponse(JSONArray response) {
                     try {
                         for (int i = 0; i < response.length(); i++) {
-                            //Get JSONObject route
+
                             JSONObject song = response.getJSONObject(i);
 
                             //get data

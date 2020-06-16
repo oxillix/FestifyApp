@@ -83,7 +83,7 @@ public class RoomByLocationAdapter extends RecyclerView.Adapter<RoomByLocationAd
 
                         editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
                         editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
-                        //  editor.putBoolean("isDoingRoute", true);
+
 
                         editor.commit();
                         //TODO: fix
@@ -93,7 +93,7 @@ public class RoomByLocationAdapter extends RecyclerView.Adapter<RoomByLocationAd
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new mapRouteFragment();
+                        //Fragment myFragment = new SongsFragment();
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }

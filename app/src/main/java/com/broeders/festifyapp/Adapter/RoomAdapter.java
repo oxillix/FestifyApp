@@ -47,26 +47,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         //get
         int roomID = currentItem.getRoomID();
         String roomName = currentItem.getRoomName();
-       // String songArtist = currentItem.getSongArtist();
-        //String routeTitle = currentItem.getRouteTitle();
-        //String creatorName = currentItem.getCreator();
-        //String routeDescription = currentItem.getDescription();
-        //info
-        //String location = currentItem.getLocation();
-        //String routeLength = currentItem.getRouteLength();
 
-        //set
-        /*
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.bigImageView);
-        if (!profileImageUrl.contentEquals("")){
-            Picasso.get().load(profileImageUrl).fit().centerInside().transform(new CircleTransform()).into(holder.ProfileImageView);
-        }
-        holder.TextViewTitle.setText(routeTitle);
-        holder.TextViewCreator.setText(creatorName);
-        holder.TextViewDescription.setText(routeDescription);
-        //info
-        holder.TextViewInfo.setText(location + " - " + routeLength + " km");
-        */
 
         holder.txtRoomName.setText(String.format("%s",roomName));
      //   holder.txtArtist.setText(String.format("%s",songArtist));
@@ -106,7 +87,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
                         editor.putInt("currentRoomID", mRoomsList.get(clickedPosition).getRoomID());
                         editor.putString("currentRoomName", mRoomsList.get(clickedPosition).getRoomName());
-                      //  editor.putBoolean("isDoingRoute", true);
+
 
                         editor.commit();
                         //TODO: fix
@@ -115,8 +96,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }catch (Exception e){
                         //TODO: fix
+
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new mapRouteFragment();
+                        //Fragment myFragment = new SongsFragment();
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }

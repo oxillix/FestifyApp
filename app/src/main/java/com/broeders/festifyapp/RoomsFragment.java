@@ -62,8 +62,8 @@ public class RoomsFragment extends Fragment {
 
         roomNameText = rootView.findViewById(R.id.roomNameTextView);
         addButton = rootView.findViewById(R.id.addButton);
-        errorText = rootView.findViewById(R.id.routes_error_textView);
-        retryButton = rootView.findViewById(R.id.button_retry_routes);
+        errorText = rootView.findViewById(R.id.error_textView);
+        retryButton = rootView.findViewById(R.id.button_retry);
         retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +102,7 @@ public class RoomsFragment extends Fragment {
                 public void onResponse(JSONArray response) {
                     try {
                         for (int i = 0; i < response.length(); i++) {
-                            //Get JSONObject route
+
                             JSONObject room = response.getJSONObject(i);
 
                             //get data

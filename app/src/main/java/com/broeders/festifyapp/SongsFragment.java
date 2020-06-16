@@ -77,8 +77,8 @@ public class SongsFragment extends Fragment {
         addButton = rootView.findViewById(R.id.addButton);
         songText = rootView.findViewById(R.id.songTextView);
         artistText = rootView.findViewById(R.id.artistTextView);
-        errorText = rootView.findViewById(R.id.routes_error_textView);
-        retryButton = rootView.findViewById(R.id.button_retry_routes);
+        errorText = rootView.findViewById(R.id.error_textView);
+        retryButton = rootView.findViewById(R.id.button_retry);
         retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +122,7 @@ public class SongsFragment extends Fragment {
                 public void onResponse(JSONArray response) {
                     try {
                         for (int i = 0; i < response.length(); i++) {
-                            //Get JSONObject route
+
                             JSONObject song = response.getJSONObject(i);
 
                             //get data

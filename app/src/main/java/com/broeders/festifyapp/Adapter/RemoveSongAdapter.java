@@ -97,7 +97,7 @@ public class RemoveSongAdapter extends RecyclerView.Adapter<RemoveSongAdapter.Ro
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new mapRouteFragment();
+                        //Fragment myFragment = new RemoveSongFragment();
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }

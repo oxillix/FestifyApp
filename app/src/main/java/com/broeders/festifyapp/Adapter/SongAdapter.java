@@ -40,25 +40,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoomViewHolder
         int songID = currentItem.getSongID();
         String songTitle = currentItem.getSongTitle();
         String songArtist = currentItem.getSongArtist();
-        //String routeTitle = currentItem.getRouteTitle();
-        //String creatorName = currentItem.getCreator();
-        //String routeDescription = currentItem.getDescription();
-        //info
-        //String location = currentItem.getLocation();
-        //String routeLength = currentItem.getRouteLength();
 
-        //set
-        /*
-        Picasso.get().load(imageUrl).fit().centerInside().into(holder.bigImageView);
-        if (!profileImageUrl.contentEquals("")){
-            Picasso.get().load(profileImageUrl).fit().centerInside().transform(new CircleTransform()).into(holder.ProfileImageView);
-        }
-        holder.TextViewTitle.setText(routeTitle);
-        holder.TextViewCreator.setText(creatorName);
-        holder.TextViewDescription.setText(routeDescription);
-        //info
-        holder.TextViewInfo.setText(location + " - " + routeLength + " km");
-        */
 
         holder.txtSong.setText(String.format("%s",songTitle));
         holder.txtArtist.setText(String.format("%s",songArtist));
@@ -110,7 +92,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoomViewHolder
                     }catch (Exception e){
                         //TODO: fix
                         //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                        //Fragment myFragment = new mapRouteFragment();
+                        //Fragment myFragment = new RoomsFragment();
                         //activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).commit();
                     }
                 }
@@ -129,7 +111,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.RoomViewHolder
                 likeButton.setVisibility(View.VISIBLE);
             } else {
                 likeButton.setVisibility(View.GONE);
-                //breng naar routeactivity
+
             }
         }
     }
